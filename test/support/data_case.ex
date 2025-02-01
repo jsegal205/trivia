@@ -24,6 +24,7 @@ defmodule Trivia.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Trivia.DataCase
+      import Trivia.Factory
     end
   end
 
