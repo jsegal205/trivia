@@ -9,6 +9,8 @@ defmodule Trivia.Games.Game do
     field :name, :binary
     field :status, Ecto.Enum, values: [:waiting, :started, :finished]
 
+    many_to_many(:questions, Trivia.Questions.Question, join_through: "games_questions")
+
     timestamps(type: :utc_datetime)
   end
 

@@ -9,6 +9,7 @@ defmodule Trivia.Questions.Question do
     field :question, :binary
     field :answer, :binary
 
+    many_to_many(:games, Trivia.Games.Game, join_through: "games_questions")
     has_many(:player_guesses, Trivia.PlayerGuesses.PlayerGuess)
 
     timestamps(type: :utc_datetime)
