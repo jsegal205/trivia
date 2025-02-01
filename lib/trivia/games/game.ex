@@ -10,6 +10,7 @@ defmodule Trivia.Games.Game do
     field :status, Ecto.Enum, values: [:waiting, :started, :finished]
 
     many_to_many(:questions, Trivia.Questions.Question, join_through: "games_questions")
+    many_to_many(:players, Trivia.Players.Player, join_through: "games_players")
 
     timestamps(type: :utc_datetime)
   end
