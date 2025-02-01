@@ -1,4 +1,6 @@
 defmodule Trivia.Factory do
+  @moduledoc false
+
   use ExMachina.Ecto, repo: Trivia.Repo
 
   alias Trivia.Trivia.Games.Game

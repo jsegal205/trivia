@@ -1,4 +1,5 @@
 defmodule Trivia.Trivia.Games.Game do
+  @moduledoc false
   use Ecto.Schema
   import Ecto.Changeset
 

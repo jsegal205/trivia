@@ -43,6 +43,8 @@ defmodule Trivia.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
+      # dev and test deps
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       # test deps
       {:ex_machina, "~> 2.8.0", only: :test}
     ]
