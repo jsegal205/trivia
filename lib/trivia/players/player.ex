@@ -8,6 +8,8 @@ defmodule Trivia.Players.Player do
   schema "players" do
     field :name, :binary
 
+    has_many(:player_guesses, Trivia.PlayerGuesses.PlayerGuess)
+
     timestamps(type: :utc_datetime)
   end
 

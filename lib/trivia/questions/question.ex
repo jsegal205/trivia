@@ -9,6 +9,8 @@ defmodule Trivia.Questions.Question do
     field :question, :binary
     field :answer, :binary
 
+    has_many(:player_guesses, Trivia.PlayerGuesses.PlayerGuess)
+
     timestamps(type: :utc_datetime)
   end
 

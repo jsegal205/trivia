@@ -5,6 +5,7 @@ defmodule Trivia.Factory do
 
   alias Trivia.Questions.Question
   alias Trivia.Games.Game
+  alias Trivia.PlayerGuesses.PlayerGuess
   alias Trivia.Players.Player
 
   def game_factory() do
@@ -24,6 +25,21 @@ defmodule Trivia.Factory do
     %Question{
       question: "What's the air speed velocity of a swallow",
       answer: "African or European"
+    }
+  end
+
+  def player_guess_factory() do
+    player = build(:player)
+    game = build(:game)
+    question = build(:question)
+
+    %PlayerGuess{
+      player: player,
+      game_id: game.id,
+      question: question,
+      guess: "This is my guess",
+      status: :correct,
+      score: 100
     }
   end
 end
