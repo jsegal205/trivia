@@ -3,6 +3,7 @@ defmodule Trivia.Factory do
 
   use ExMachina.Ecto, repo: Trivia.Repo
 
+  alias Trivia.Questions.Question
   alias Trivia.Trivia.Games.Game
   alias Trivia.Trivia.Players.Player
 
@@ -15,7 +16,14 @@ defmodule Trivia.Factory do
 
   def player_factory() do
     %Player{
-      name: "player-name-#{Ecto.UUID.generate()}"
+      name: "Johnny Trivia"
+    }
+  end
+
+  def question_factory() do
+    %Question{
+      question: "What's the air speed velocity of a swallow",
+      answer: "African or European"
     }
   end
 end
