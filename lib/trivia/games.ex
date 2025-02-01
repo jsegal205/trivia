@@ -1,4 +1,4 @@
-defmodule Trivia.Trivia.Games do
+defmodule Trivia.Games do
   @moduledoc """
   The Trivia.Games context.
   """
@@ -6,7 +6,7 @@ defmodule Trivia.Trivia.Games do
   import Ecto.Query, warn: false
   alias Trivia.Repo
 
-  alias Trivia.Trivia.Games.Game
+  alias Trivia.Games.Game
 
   @doc """
   Returns the list of games.

@@ -1,10 +1,10 @@
-defmodule Trivia.Trivia.PlayersTest do
+defmodule Trivia.PlayersTest do
   use Trivia.DataCase
 
-  alias Trivia.Trivia.Players
+  alias Trivia.Players
 
   describe "players" do
-    alias Trivia.Trivia.Players.Player
+    alias Trivia.Players.Player
 
     @invalid_attrs %{name: nil}
 

@@ -4,8 +4,8 @@ defmodule Trivia.Factory do
   use ExMachina.Ecto, repo: Trivia.Repo
 
   alias Trivia.Questions.Question
-  alias Trivia.Trivia.Games.Game
-  alias Trivia.Trivia.Players.Player
+  alias Trivia.Games.Game
+  alias Trivia.Players.Player
 
   def game_factory() do
     %Game{
