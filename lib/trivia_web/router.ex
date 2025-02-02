@@ -9,6 +9,10 @@ defmodule TriviaWeb.Router do
     pipe_through :api
   end
 
+  scope "/", TriviaWeb do
+    get "/*path", PageController, :index
+  end
+
   # Enable LiveDashboard in development
   if Application.compile_env(:trivia, :dev_routes) do
     # If you want to use the LiveDashboard in production, you should put
