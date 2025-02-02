@@ -41,8 +41,9 @@ defmodule TriviaWeb do
         formats: [:html, :json],
         layouts: [html: TriviaWeb.Layouts]
 
+      use Gettext, backend: MyApp.GettextGettext
+
       import Plug.Conn
-      import TriviaWeb.Gettext
 
       unquote(verified_routes())
     end
