@@ -1,13 +1,14 @@
-name: Elixir CI
+name: CI Checks
 
 on:
   pull_request:
     branches: ["main"]
+  workflow_dispatch:
 
 env:
   MIX_ENV: test
   ELIXIR_VERSION: "1.17.3"
-  OTP_VERSION: "26.0.2"
+  OTP_VERSION: "26.2.5"
 
 permissions:
   contents: read
@@ -117,3 +118,22 @@ jobs:
 
       - name: Check credo
         run: mix credo
+
+  assets-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ^9.10.0
+
+      - name: Install dependencies
+        working-directory: ./assets
+        run: pnpm run ci
+
+      - name: Build
+        working-directory: ./assets
+        run: pnpm run build

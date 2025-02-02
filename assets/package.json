@@ -1,8 +1,11 @@
 {
-  "name": "assets",
+  "name": "trivia-ui",
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "module",
+  "packageManager": "pnpm@9.10.0",
   "scripts": {
+    "build": "tsc -b && vite build",
+    "ci": "pnpm install --frozen-lockfile",
     "dev": "vite"
   },
   "keywords": [],
@@ -10,10 +13,18 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@chakra-ui/react": "^3.6.0",
+    "@emotion/react": "^11.14.0",
+    "@tanstack/react-router": "^1.99.0",
+    "next-themes": "^0.4.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.4.0"
   },
   "devDependencies": {
+    "@tanstack/router-devtools": "^1.99.0",
+    "@tanstack/router-plugin": "^1.99.0",
+    "@types/node": "^22.13.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
