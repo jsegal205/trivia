@@ -18,13 +18,21 @@ asdf install
 
 ### Application Dependencies
 
-Install needed serverside and clientside dependencies as well as setting up the database.
+Install needed serverside dependencies as well as setting up the database.
 
 ```sh
 mix setup
 ```
 
+Install clientside dependencies from `assets` folder.
+
+```sh
+npm install
+```
+
 ## Run Locally
+
+### API
 
 ```sh
 mix phx.server
@@ -37,6 +45,14 @@ iex -S mix phx.server
 ```
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+
+### React UI
+
+from the `assets` folder run:
+
+```sh
+npm run dev
+```
 
 ## Testing
 
