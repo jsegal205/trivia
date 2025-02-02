@@ -131,6 +131,8 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: Install UI deps
+        working-directory: ./assets
         run: npm run ci
       - name: Build
+        working-directory: ./assets
         run: npm run build
