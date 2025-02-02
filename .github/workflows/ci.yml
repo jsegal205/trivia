@@ -9,7 +9,6 @@ env:
   MIX_ENV: test
   ELIXIR_VERSION: "1.17.3"
   OTP_VERSION: "26.2.5"
-  NODE_VERSION: "22.13.1"
 
 permissions:
   contents: read
@@ -126,13 +125,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-      - name: Install UI deps
-        working-directory: ./assets
-        run: npm run ci
+
+      - uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm run ci
+
       - name: Build
         working-directory: ./assets
-        run: npm run build
+        run: pnpm run build

@@ -48,13 +48,21 @@ Now you can visit api routes at [`localhost:4000/api`](http://localhost:4000/api
 
 ### React UI
 
-from the `assets` folder run:
+This project uses pnpm as the package manager. Install that first: [https://pnpm.io/installation](https://pnpm.io/installation)
+
+From the `assets` folder run:
 
 ```sh
-npm run dev
+pnpm install
 ```
 
-Now you can visit the UI at [`localhost:5173`](http://localhost:5173) from your browser.
+## Development
+
+```sh
+pnpm run dev
+```
+
+Then navigate to the route provided in terminal
 
 ## Testing
 
