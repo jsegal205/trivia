@@ -44,7 +44,7 @@ or with interactive shell
 iex -S mix phx.server
 ```
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Now you can visit api routes at [`localhost:4000/api`](http://localhost:4000/api) from your browser.
 
 ### React UI
 
@@ -53,6 +53,8 @@ from the `assets` folder run:
 ```sh
 npm run dev
 ```
+
+Now you can visit the UI at [`localhost:5173`](http://localhost:5173) from your browser.
 
 ## Testing
 
