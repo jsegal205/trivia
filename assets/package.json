@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc -b && vite build",
-    "ci": "npm ci",
+    "ci": "npm ci --include=dev",
     "dev": "vite"
   },
   "keywords": [],
