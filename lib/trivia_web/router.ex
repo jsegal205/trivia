@@ -3,14 +3,25 @@ defmodule TriviaWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+
+    plug Plug.Parsers,
+      parsers: [:urlencoded, :multipart, :json, Absinthe.Plug.Parser],
+      pass: ["*/*"],
+      json_decoder: Jason
+
+    plug Absinthe.Plug,
+      schema: TriviaWeb.Schema
   end
 
   scope "/api", TriviaWeb do
     pipe_through :api
   end
 
-  scope "/", TriviaWeb do
-    get "/*path", PageController, :index
+  scope "/" do
+    # api
+    forward "/graphql", Absinthe.Plug, schema: TriviaWeb.Schema
+    # gql interface
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: TriviaWeb.Schema
   end
 
   # Enable LiveDashboard in development
@@ -27,5 +38,10 @@ defmodule TriviaWeb.Router do
 
       live_dashboard "/dashboard", metrics: TriviaWeb.Telemetry
     end
+  end
+
+  # React UI routes
+  scope "/", TriviaWeb do
+    get "/*path", PageController, :index
   end
 end
