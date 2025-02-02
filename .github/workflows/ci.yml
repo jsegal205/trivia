@@ -1,13 +1,15 @@
-name: Elixir CI
+name: CI Checks
 
 on:
   pull_request:
     branches: ["main"]
+  workflow_dispatch:
 
 env:
   MIX_ENV: test
   ELIXIR_VERSION: "1.17.3"
-  OTP_VERSION: "26.0.2"
+  OTP_VERSION: "26.2.5"
+  NODE_VERSION: "22.13.1"
 
 permissions:
   contents: read
@@ -117,3 +119,18 @@ jobs:
 
       - name: Check credo
         run: mix credo
+
+  assets-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install UI deps
+        run: npm run ci
+      - name: Build
+        run: npm run build
