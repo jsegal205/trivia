@@ -1,4 +1,5 @@
 defmodule TriviaWeb.GraphQLCase do
+  @moduledoc false
   use ExUnit.CaseTemplate
 
   using do
