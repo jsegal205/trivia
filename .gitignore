@@ -26,5 +26,27 @@ erl_crash.dump
 trivia-*.tar
 
 # ui shit
-*/node_modules/
-*/.vite/
+# Logs
+logs
+*.log
+npm-debug.log*
+
+.vite
+node_modules
+dist
+dist-ssr
+*.local
+
+# ts things
+*.tsbuildinfo
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
