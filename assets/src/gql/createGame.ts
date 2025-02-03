@@ -11,13 +11,15 @@ const createGame = gql`
 
 const client = new GraphQLClient("http://localhost:4000/graphql")
 
-export const useCreateGame = () => {
+export const useCreateGame = ({successCallback: successCallback}: {successCallback: () => void}) => {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: (variables: {name: string}) => client.request(createGame, variables),
     onSuccess: () => {
       queryClient.invalidateQueries({queryKey: ["listGames"]})
+      if (typeof successCallback === "function") {
+        successCallback();
+      }
     }
-
   })
 }
