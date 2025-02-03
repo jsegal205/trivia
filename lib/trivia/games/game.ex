@@ -6,7 +6,7 @@ defmodule Trivia.Games.Game do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "games" do
-    field :name, :binary
+    field :name, :string
     field :status, Ecto.Enum, values: [:waiting, :started, :finished], default: :waiting
 
     many_to_many(:questions, Trivia.Questions.Question, join_through: "games_questions")
