@@ -7,7 +7,7 @@ defmodule Trivia.Games.Game do
   @foreign_key_type :binary_id
   schema "games" do
     field :name, :binary
-    field :status, Ecto.Enum, values: [:waiting, :started, :finished]
+    field :status, Ecto.Enum, values: [:waiting, :started, :finished], default: :waiting
 
     many_to_many(:questions, Trivia.Questions.Question, join_through: "games_questions")
     many_to_many(:players, Trivia.Players.Player, join_through: "games_players")

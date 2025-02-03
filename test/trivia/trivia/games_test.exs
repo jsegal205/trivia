@@ -26,6 +26,14 @@ defmodule Trivia.GamesTest do
       assert game.status == :waiting
     end
 
+    test "create_game/1 with valid data defaults status to :waiting" do
+      valid_attrs = %{name: "some name"}
+
+      assert {:ok, %Game{} = game} = Games.create_game(valid_attrs)
+      assert game.name == "some name"
+      assert game.status == :waiting
+    end
+
     test "create_game/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Games.create_game(@invalid_attrs)
     end
