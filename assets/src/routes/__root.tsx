@@ -13,7 +13,7 @@ export const Route = createRootRoute({
       minHeight="100vh"
     >
       <Flex margin="4" justifyContent="space-between">
-        <Flex as="nav" alignItems="center">
+        <Flex as="nav" gapX="4" alignItems="center">
           <Link to="/">Home</Link>
           <Link to="/games">Games</Link>
         </Flex>
