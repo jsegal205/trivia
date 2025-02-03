@@ -4,7 +4,7 @@ defmodule Trivia.Repo.Migrations.CreatePlayerGuesses do
   def change do
     create table(:player_guesses, primary_key: false) do
       add :id, :binary_id, primary_key: true
-      add :guess, :binary
+      add :guess, :string
       add :score, :integer
       add :status, :string
       add :player_id, references(:players, on_delete: :nothing, type: :binary_id)
