@@ -1,6 +1,9 @@
+import { ColorModeButton } from "@/components/ui/color-mode";
 import { Flex } from "@chakra-ui/react";
 import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 export const Route = createRootRoute({
   component: () => (
     <Flex
@@ -9,11 +12,17 @@ export const Route = createRootRoute({
       justifyContent="space-between"
       minHeight="100vh"
     >
-      <Flex as="nav" margin="4">
-        <Link to="/">Home</Link>
+      <Flex margin="4" justifyContent="space-between">
+        <Flex as="nav" gapX="4" alignItems="center">
+          <Link to="/">Home</Link>
+          <Link to="/games">Games</Link>
+        </Flex>
+        <ColorModeButton />
       </Flex>
+
       <Outlet />
       <TanStackRouterDevtools />
+      <ReactQueryDevtools />
     </Flex>
   ),
 });
