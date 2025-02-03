@@ -1,10 +1,6 @@
 import { request, gql } from "graphql-request"
 import { useQuery } from "@tanstack/react-query"
-
-type Game = {
-  name: string
-}
-
+import { type Game } from "./getGame"
 interface ListGamesQuery {
   games: Array<Game>
 }
@@ -12,6 +8,7 @@ interface ListGamesQuery {
 const listGames = gql`
   query Games {
     games {
+      id
       name
     }
   }
