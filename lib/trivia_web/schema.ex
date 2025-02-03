@@ -10,6 +10,10 @@ defmodule TriviaWeb.Schema do
         {:ok, "pong"}
       end)
     end
+
+    field :games, list_of(:game) do
+      resolve(&GameResolver.list_games/2)
+    end
   end
 
   mutation do

@@ -1,4 +1,4 @@
-defmodule TriviaWeb.SchemaTest do
+defmodule TriviaWeb.Schema.PingTest do
   use TriviaWeb.GraphQLCase, async: true
 
   @ping_query """

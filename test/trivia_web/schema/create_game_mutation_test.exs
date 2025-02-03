@@ -1,4 +1,4 @@
-defmodule TriviaWeb.CreateGameMutationTest do
+defmodule TriviaWeb.Schema.CreateGameMutationTest do
   use TriviaWeb.GraphQLCase, async: true
 
   @create_game_mutation """
