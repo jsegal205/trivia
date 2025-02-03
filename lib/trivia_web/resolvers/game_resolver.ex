@@ -1,4 +1,7 @@
 defmodule TriviaWeb.Resolvers.GameResolver do
+  @moduledoc """
+  Module to interface between GQL schemas and context modules
+  """
   alias Trivia.Games
 
   def list_games(_args, _context) do
