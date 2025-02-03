@@ -1,7 +1,7 @@
-defmodule TriviaWeb.Schema.ListGamesQueryTest do
+defmodule TriviaWeb.Schema.GamesQueryTest do
   use TriviaWeb.GraphQLCase, async: true
 
-  @list_game_query """
+  @game_query """
   query {
     games {
       name
@@ -9,9 +9,9 @@ defmodule TriviaWeb.Schema.ListGamesQueryTest do
   }
   """
 
-  describe "list games query" do
+  describe "Games query" do
     test "success with no games", %{conn: conn} do
-      response = graphql_request(conn, @list_game_query)
+      response = graphql_request(conn, @game_query)
 
       assert %{
                "data" => %{
@@ -22,7 +22,7 @@ defmodule TriviaWeb.Schema.ListGamesQueryTest do
 
     test "success with games", %{conn: conn} do
       %{name: name} = insert(:game)
-      response = graphql_request(conn, @list_game_query)
+      response = graphql_request(conn, @game_query)
 
       assert %{
                "data" => %{
