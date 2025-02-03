@@ -1,4 +1,4 @@
-import {request, gql} from "graphql-request"
+import { request, gql } from "graphql-request"
 import { useQuery } from "@tanstack/react-query"
 
 type Game = {
@@ -18,11 +18,8 @@ const listGames = gql`
 `
 
 export const useListGames = () => {
-
-  return { isFetching: false, data: {games: []}, isError: true, error: {message: "mocked errro"} }
-
-  // return useQuery<ListGamesQuery>({
-  //   queryKey: ["listGames"],
-  //   queryFn: async () => request("http://localhost:4000/graphql", listGames)
-  // })
+  return useQuery<ListGamesQuery>({
+    queryKey: ["listGames"],
+    queryFn: async () => request("http://localhost:4000/graphql", listGames)
+  })
 }

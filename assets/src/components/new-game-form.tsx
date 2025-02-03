@@ -1,3 +1,4 @@
+import { useCreateGame } from "@/gql/createGame";
 import {
   Button,
   DialogActionTrigger,
@@ -13,8 +14,17 @@ import {
   Field,
   Input,
 } from "@chakra-ui/react";
+import { useState } from "react";
 
 export const NewGameForm = () => {
+  const [name, setName] = useState<string>("");
+  const mutation = useCreateGame();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    mutation.mutate({ name: name });
+  };
+
   return (
     <DialogRoot placement="center">
       <DialogBackdrop />
@@ -30,14 +40,17 @@ export const NewGameForm = () => {
         <DialogBody>
           <Field.Root>
             <Field.Label>Game Name:</Field.Label>
-            <Input placeholder="me@example.com" />
+            <Input
+              onChange={(event) => setName(event.target.value)}
+              placeholder="Super Awesome Game"
+            />
           </Field.Root>
         </DialogBody>
         <DialogFooter>
           <DialogActionTrigger asChild>
             <Button variant="outline">Cancel</Button>
           </DialogActionTrigger>
-          <Button>Save</Button>
+          <Button onClick={handleSubmit}>Save</Button>
         </DialogFooter>
         <DialogCloseTrigger />
       </DialogContent>
