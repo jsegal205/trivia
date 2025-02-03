@@ -24,15 +24,13 @@ defmodule Trivia.Games do
   @doc """
   Gets a single game.
 
-  Raises `Ecto.NoResultsError` if the Game does not exist.
-
   ## Examples
 
-      iex> get_game!(123)
+      iex> get_game(123)
       %Game{}
 
-      iex> get_game!(456)
-      ** (Ecto.NoResultsError)
+      iex> get_game(456)
+      ** nil
 
   """
   def get_game(id), do: Repo.get(Game, id)
