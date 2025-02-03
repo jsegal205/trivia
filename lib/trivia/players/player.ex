@@ -6,7 +6,7 @@ defmodule Trivia.Players.Player do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "players" do
-    field :name, :binary
+    field :name, :string
 
     has_many(:player_guesses, Trivia.PlayerGuesses.PlayerGuess)
     many_to_many(:games, Trivia.Games.Game, join_through: "games_players")

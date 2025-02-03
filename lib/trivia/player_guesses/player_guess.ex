@@ -7,7 +7,7 @@ defmodule Trivia.PlayerGuesses.PlayerGuess do
   @foreign_key_type :binary_id
   schema "player_guesses" do
     field :status, Ecto.Enum, values: [:correct, :incorrect]
-    field :guess, :binary
+    field :guess, :string
     field :score, :integer
     field :game_id, :binary_id
 
