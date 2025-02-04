@@ -9,22 +9,17 @@ export const Route = createFileRoute("/games/")({
 
 function RouteComponent() {
   return (
-    <>
+    <Flex direction="column">
       <Flex justifyContent="space-evenly">
         <Heading as="h2" size="3xl">
           Hiya games
         </Heading>
         <NewGameForm />
       </Flex>
-      <Flex
-        direction="column"
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <Heading as="h3">Ongoing games:</Heading>
-        <Games />
-      </Flex>
-    </>
+
+      <Heading as="h3">Ongoing games:</Heading>
+      <Games />
+    </Flex>
   );
 }
 
@@ -42,7 +37,7 @@ const Games = () => {
   }
 
   return (
-    <Flex alignSelf="center" gap="4" marginTop="2" wrap="wrap">
+    <Flex justifyContent="center" gap="4" marginTop="2" wrap="wrap">
       {data!.games.map(Game)}
     </Flex>
   );

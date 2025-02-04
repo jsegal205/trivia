@@ -6,12 +6,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export const Route = createRootRoute({
   component: () => (
-    <Flex
-      as="main"
-      direction="column"
-      justifyContent="space-between"
-      minHeight="100vh"
-    >
+    <Flex as="main" direction="column" minHeight="100vh" position="relative">
       <Flex margin="4" justifyContent="space-between">
         <Flex as="nav" gapX="4" alignItems="center">
           <Link to="/">Home</Link>
@@ -20,7 +15,9 @@ export const Route = createRootRoute({
         <ColorModeButton />
       </Flex>
 
-      <Outlet />
+      <Flex margin="4">
+        <Outlet />
+      </Flex>
       <TanStackRouterDevtools />
       <ReactQueryDevtools />
     </Flex>

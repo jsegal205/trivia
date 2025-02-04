@@ -12,8 +12,12 @@ import {
   DialogRoot,
   DialogTitle,
   Field,
+  Flex,
+  Heading,
+  HStack,
   Input,
   useDisclosure,
+  VStack,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useJoinGame } from "@/gql/joinGame";
@@ -63,43 +67,59 @@ function Game() {
   }
 
   return (
-    <>
-      <div>game {data?.game.name}</div>
-      <div>
-        Players:
-        {data?.game.players.map((player) => (
-          <div key={player.name}>{player.name}</div>
-        ))}
-      </div>
-      <Button variant="outline" size="sm" onClick={onOpen}>
-        Join Game
-      </Button>
-      <DialogRoot placement="center" open={open}>
-        <DialogBackdrop />
+    <HStack flex="200px 1" position="relative">
+      <Flex direction="column">
+        <Heading as="h3" fontSize="3xl" minWidth="200px">
+          Players:
+        </Heading>
+        {(data?.game.players || []).length > 0 ? (
+          data?.game.players.map((player) => (
+            <div key={player.name}>{player.name}</div>
+          ))
+        ) : (
+          <label>No one here yet!</label>
+        )}
+      </Flex>
 
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Join As</DialogTitle>
-          </DialogHeader>
-          <DialogBody>
-            <Field.Root>
-              <Field.Label>Player Name:</Field.Label>
-              <Input
-                onChange={(event) => setName(event.target.value)}
-                placeholder="Lloyd Christmas"
-              />
-            </Field.Root>
-          </DialogBody>
-          <DialogFooter>
-            <Button variant="outline" onClick={onClose}>
-              Cancel
-            </Button>
+      <Flex
+        marginX="4"
+        direction="row"
+        justifyContent="space-between"
+        flexGrow="1"
+      >
+        <Heading as="h1" fontSize="4xl">
+          {data?.game.name}
+        </Heading>
+        <Button variant="solid" size="sm" onClick={onOpen}>
+          Join Game
+        </Button>
+        <DialogRoot open={open}>
+          <DialogBackdrop />
 
-            <Button onClick={handleSubmit}>Save</Button>
-          </DialogFooter>
-          <DialogCloseTrigger />
-        </DialogContent>
-      </DialogRoot>
-    </>
+          <DialogContent position="absolute">
+            <DialogHeader>
+              <DialogTitle>Join As</DialogTitle>
+            </DialogHeader>
+            <DialogBody>
+              <Field.Root>
+                <Field.Label>Player Name:</Field.Label>
+                <Input
+                  onChange={(event) => setName(event.target.value)}
+                  placeholder="Lloyd Christmas"
+                />
+              </Field.Root>
+            </DialogBody>
+            <DialogFooter>
+              <Button variant="outline" onClick={onClose}>
+                Cancel
+              </Button>
+
+              <Button onClick={handleSubmit}>Save</Button>
+            </DialogFooter>
+            <DialogCloseTrigger />
+          </DialogContent>
+        </DialogRoot>
+      </Flex>
+    </HStack>
   );
 }
