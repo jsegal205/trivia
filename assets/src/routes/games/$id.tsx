@@ -17,7 +17,6 @@ import {
   HStack,
   Input,
   useDisclosure,
-  VStack,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useJoinGame } from "@/gql/joinGame";
