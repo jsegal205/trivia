@@ -67,7 +67,9 @@ function Game() {
       <div>game {data?.game.name}</div>
       <div>
         Players:
-        {data?.game.players.map((player) => <div>{player.name}</div>)}
+        {data?.game.players.map((player) => (
+          <div key={player.name}>{player.name}</div>
+        ))}
       </div>
       <Button variant="outline" size="sm" onClick={onOpen}>
         Join Game
