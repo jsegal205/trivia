@@ -1,9 +1,11 @@
 import { request, gql } from "graphql-request"
 import { useQuery } from "@tanstack/react-query"
+import { apiUrl } from "./helpers";
 
 export type Game = {
   id: string;
   name: string;
+  players: Array<{name: string}>;
 }
 
 interface GetGameQuery {
@@ -15,13 +17,16 @@ const getGame = gql`
     game(id: $id) {
       id
       name
+      players {
+        name
+      }
     }
   }
 `
 
 export const useGetGame = (id: string) => {
   return useQuery<GetGameQuery>({
-    queryKey: ["getGame"],
-    queryFn: async () => request("http://localhost:4000/graphql", getGame, {id: id})
+    queryKey: ["getGame", id],
+    queryFn: async () => request(apiUrl, getGame, {id: id})
   })
 }
