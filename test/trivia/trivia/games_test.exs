@@ -14,8 +14,8 @@ defmodule Trivia.GamesTest do
     end
 
     test "get_game/1 returns the game with given id" do
-      game = insert(:game)
-      assert Games.get_game(game.id) == game
+      game = insert(:game) |> Repo.preload(:players)
+      assert game == Games.get_game(game.id)
     end
 
     test "create_game/1 with valid data creates a game" do
@@ -48,7 +48,7 @@ defmodule Trivia.GamesTest do
     end
 
     test "update_game/2 with invalid data returns error changeset" do
-      game = insert(:game)
+      game = insert(:game) |> Repo.preload(:players)
       assert {:error, %Ecto.Changeset{}} = Games.update_game(game, @invalid_attrs)
       assert game == Games.get_game(game.id)
     end
