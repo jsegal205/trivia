@@ -4,6 +4,7 @@ defmodule TriviaWeb.Schema.GamesQueryTest do
   @game_query """
   query {
     games {
+      id
       name
     }
   }
@@ -21,7 +22,7 @@ defmodule TriviaWeb.Schema.GamesQueryTest do
     end
 
     test "success with games", %{conn: conn} do
-      %{name: name} = insert(:game)
+      %{id: id, name: name} = insert(:game)
       response = graphql_request(conn, @game_query)
 
       assert %{
@@ -30,6 +31,7 @@ defmodule TriviaWeb.Schema.GamesQueryTest do
                }
              } = json_response(response, 200)
 
+      assert game["id"] == id
       assert game["name"] == name
     end
   end

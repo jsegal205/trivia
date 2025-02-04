@@ -4,6 +4,7 @@ defmodule Trivia.Games do
   """
 
   import Ecto.Query, warn: false
+  alias Trivia.Players.Player
   alias Trivia.Repo
 
   alias Trivia.Games.Game
@@ -24,18 +25,16 @@ defmodule Trivia.Games do
   @doc """
   Gets a single game.
 
-  Raises `Ecto.NoResultsError` if the Game does not exist.
-
   ## Examples
 
-      iex> get_game!(123)
+      iex> get_game(123)
       %Game{}
 
-      iex> get_game!(456)
-      ** (Ecto.NoResultsError)
+      iex> get_game(456)
+      ** nil
 
   """
-  def get_game!(id), do: Repo.get!(Game, id)
+  def get_game(id), do: Repo.get(Game, id) |> Repo.preload(:players)
 
   @doc """
   Creates a game.
@@ -100,5 +99,27 @@ defmodule Trivia.Games do
   """
   def change_game(%Game{} = game, attrs \\ %{}) do
     Game.changeset(game, attrs)
+  end
+
+  @doc """
+  Associates a player to a game.
+
+  ## Examples
+
+      iex> add_player(game, player)
+      {:ok, %Game{}}
+
+      iex> add_player(game, player)
+      {:error, %Ecto.Changeset{}}
+  """
+  def add_player(%Game{} = game, %Player{} = player) do
+    game = Repo.preload(game, :players)
+
+    updated_players = game.players ++ [player]
+
+    game
+    |> Ecto.Changeset.change()
+    |> Ecto.Changeset.put_assoc(:players, updated_players)
+    |> Repo.update()
   end
 end

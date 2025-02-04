@@ -1,5 +1,6 @@
 import { GraphQLClient, gql } from "graphql-request"
 import {  useMutation, useQueryClient } from "@tanstack/react-query"
+import { apiUrl } from "./helpers"
 
 const createGame = gql`
   mutation CreateGame($name: String!) {
@@ -9,7 +10,7 @@ const createGame = gql`
   }
 `
 
-const client = new GraphQLClient("http://localhost:4000/graphql")
+const client = new GraphQLClient(apiUrl)
 
 export const useCreateGame = ({successCallback: successCallback}: {successCallback: () => void}) => {
   const queryClient = useQueryClient()

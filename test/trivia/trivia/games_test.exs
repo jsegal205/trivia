@@ -13,9 +13,9 @@ defmodule Trivia.GamesTest do
       assert Games.list_games() == [game]
     end
 
-    test "get_game!/1 returns the game with given id" do
-      game = insert(:game)
-      assert Games.get_game!(game.id) == game
+    test "get_game/1 returns the game with given id" do
+      game = insert(:game) |> Repo.preload(:players)
+      assert game == Games.get_game(game.id)
     end
 
     test "create_game/1 with valid data creates a game" do
@@ -48,20 +48,33 @@ defmodule Trivia.GamesTest do
     end
 
     test "update_game/2 with invalid data returns error changeset" do
-      game = insert(:game)
+      game = insert(:game) |> Repo.preload(:players)
       assert {:error, %Ecto.Changeset{}} = Games.update_game(game, @invalid_attrs)
-      assert game == Games.get_game!(game.id)
+      assert game == Games.get_game(game.id)
     end
 
     test "delete_game/1 deletes the game" do
       game = insert(:game)
       assert {:ok, %Game{}} = Games.delete_game(game)
-      assert_raise Ecto.NoResultsError, fn -> Games.get_game!(game.id) end
+      assert nil == Games.get_game(game.id)
     end
 
     test "change_game/1 returns a game changeset" do
       game = insert(:game)
       assert %Ecto.Changeset{} = Games.change_game(game)
+    end
+
+    test "add_player/2 returns {:ok, %Game{}}" do
+      %{id: game_id} = game = insert(:game)
+      %{id: player_id} = player = insert(:player)
+
+      assert {:ok, %Game{}} = Games.add_player(game, player)
+
+      reloaded_game = Games.get_game(game.id) |> Repo.preload(:players)
+      assert reloaded_game.players == [player]
+
+      join_table = Repo.all(from(gp in "games_players", select: [gp.game_id, gp.player_id]))
+      assert [[Ecto.UUID.dump!(game_id), Ecto.UUID.dump!(player_id)]] == join_table
     end
   end
 end
