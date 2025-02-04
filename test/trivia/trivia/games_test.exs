@@ -63,5 +63,18 @@ defmodule Trivia.GamesTest do
       game = insert(:game)
       assert %Ecto.Changeset{} = Games.change_game(game)
     end
+
+    test "add_player/2 returns {:ok, %Game{}}" do
+      %{id: game_id} = game = insert(:game)
+      %{id: player_id} = player = insert(:player)
+
+      assert {:ok, %Game{}} = Games.add_player(game, player)
+
+      reloaded_game = Games.get_game(game.id) |> Repo.preload(:players)
+      assert reloaded_game.players == [player]
+
+      join_table = Repo.all(from(gp in "games_players", select: [gp.game_id, gp.player_id]))
+      assert [[Ecto.UUID.dump!(game_id), Ecto.UUID.dump!(player_id)]] == join_table
+    end
   end
 end
