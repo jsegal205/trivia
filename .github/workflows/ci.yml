@@ -137,3 +137,7 @@ jobs:
       - name: Build
         working-directory: ./assets
         run: pnpm run build
+
+      - name: Prettier
+        working-directory: ./assets
+        run: pnpm run check-prettier
