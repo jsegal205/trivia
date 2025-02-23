@@ -1,4 +1,5 @@
 import { Error } from "@/components/error";
+import { Loading } from "@/components/loading";
 import { NewGameForm } from "@/components/new-game-form";
 import { useListGames } from "@/gql/listGames";
 import { Flex, Heading, Card, Button } from "@chakra-ui/react";
@@ -28,8 +29,7 @@ const Games = () => {
   const { isLoading, data, isError, error } = useListGames();
 
   if (isLoading) {
-    // TODO make better
-    return <div>loading</div>;
+    return <Loading />;
   }
 
   if (isError) {
