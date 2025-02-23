@@ -1,3 +1,4 @@
+import { Error } from "@/components/error";
 import { NewGameForm } from "@/components/new-game-form";
 import { useListGames } from "@/gql/listGames";
 import { Flex, Heading, Card, Button } from "@chakra-ui/react";
@@ -32,13 +33,16 @@ const Games = () => {
   }
 
   if (isError) {
-    // TODO make better
-    return <div>some error: {error.message}</div>;
+    return <Error message={error.message} />;
   }
 
   return (
     <Flex justifyContent="center" gap="4" marginTop="2" wrap="wrap">
-      {data!.games.map(Game)}
+      {data!.games.length > 0 ? (
+        data!.games.map(Game)
+      ) : (
+        <>No games at this time, try starting one!</>
+      )}
     </Flex>
   );
 };

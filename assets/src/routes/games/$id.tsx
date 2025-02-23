@@ -20,6 +20,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useJoinGame } from "@/gql/joinGame";
+import { Error } from "@/components/error";
 
 type SearchSchema = {
   join: boolean;
@@ -61,8 +62,7 @@ function Game() {
   }
 
   if (isError) {
-    // TODO make better
-    return <div>some error: {error.message}</div>;
+    return <Error message={error.message} />;
   }
 
   return (
