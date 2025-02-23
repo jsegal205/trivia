@@ -1,1 +1,5 @@
+# lockfile with all dependency mappings
 pnpm-lock.yaml
+
+# built assets directory
+/dist/
