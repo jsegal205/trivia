@@ -10,104 +10,104 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as IndexImport } from './routes/index'
-import { Route as GamesIndexImport } from './routes/games/index'
-import { Route as GamesIdImport } from './routes/games/$id'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as IndexImport } from "./routes/index";
+import { Route as GamesIndexImport } from "./routes/games/index";
+import { Route as GamesIdImport } from "./routes/games/$id";
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const GamesIndexRoute = GamesIndexImport.update({
-  id: '/games/',
-  path: '/games/',
+  id: "/games/",
+  path: "/games/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const GamesIdRoute = GamesIdImport.update({
-  id: '/games/$id',
-  path: '/games/$id',
+  id: "/games/$id",
+  path: "/games/$id",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/games/$id': {
-      id: '/games/$id'
-      path: '/games/$id'
-      fullPath: '/games/$id'
-      preLoaderRoute: typeof GamesIdImport
-      parentRoute: typeof rootRoute
-    }
-    '/games/': {
-      id: '/games/'
-      path: '/games'
-      fullPath: '/games'
-      preLoaderRoute: typeof GamesIndexImport
-      parentRoute: typeof rootRoute
-    }
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/games/$id": {
+      id: "/games/$id";
+      path: "/games/$id";
+      fullPath: "/games/$id";
+      preLoaderRoute: typeof GamesIdImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/games/": {
+      id: "/games/";
+      path: "/games";
+      fullPath: "/games";
+      preLoaderRoute: typeof GamesIndexImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/games/$id': typeof GamesIdRoute
-  '/games': typeof GamesIndexRoute
+  "/": typeof IndexRoute;
+  "/games/$id": typeof GamesIdRoute;
+  "/games": typeof GamesIndexRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/games/$id': typeof GamesIdRoute
-  '/games': typeof GamesIndexRoute
+  "/": typeof IndexRoute;
+  "/games/$id": typeof GamesIdRoute;
+  "/games": typeof GamesIndexRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/games/$id': typeof GamesIdRoute
-  '/games/': typeof GamesIndexRoute
+  __root__: typeof rootRoute;
+  "/": typeof IndexRoute;
+  "/games/$id": typeof GamesIdRoute;
+  "/games/": typeof GamesIndexRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/games/$id' | '/games'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/games/$id' | '/games'
-  id: '__root__' | '/' | '/games/$id' | '/games/'
-  fileRoutesById: FileRoutesById
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: "/" | "/games/$id" | "/games";
+  fileRoutesByTo: FileRoutesByTo;
+  to: "/" | "/games/$id" | "/games";
+  id: "__root__" | "/" | "/games/$id" | "/games/";
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  GamesIdRoute: typeof GamesIdRoute
-  GamesIndexRoute: typeof GamesIndexRoute
+  IndexRoute: typeof IndexRoute;
+  GamesIdRoute: typeof GamesIdRoute;
+  GamesIndexRoute: typeof GamesIndexRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GamesIdRoute: GamesIdRoute,
   GamesIndexRoute: GamesIndexRoute,
-}
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {
