@@ -21,6 +21,7 @@ import {
 import { useEffect, useState } from "react";
 import { useJoinGame } from "@/gql/joinGame";
 import { Error } from "@/components/error";
+import { Loading } from "@/components/loading";
 
 type SearchSchema = {
   join: boolean;
@@ -57,8 +58,7 @@ function Game() {
   }, [join]);
 
   if (isLoading) {
-    // TODO make better
-    return <div>loading</div>;
+    return <Loading />;
   }
 
   if (isError) {
